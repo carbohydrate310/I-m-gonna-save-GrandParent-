@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,7 +8,7 @@
 
   <meta
     name="description"
-    content="Frontend projects and experiments by Sugar310."
+    content="Sugar310's frontend projects and web application experiments."
   >
 
   <style>
@@ -18,13 +17,19 @@
     }
 
     :root {
-      --bg: #070b14;
+      --bg: #060a12;
       --card: rgba(255, 255, 255, 0.055);
+      --card-hover: rgba(255, 255, 255, 0.085);
       --border: rgba(255, 255, 255, 0.1);
+
       --text: #f8fafc;
       --muted: #94a3b8;
+
       --green: #34d399;
+      --green-light: #a7f3d0;
+
       --blue: #60a5fa;
+      --blue-light: #bfdbfe;
       --purple: #a78bfa;
     }
 
@@ -35,12 +40,9 @@
     body {
       margin: 0;
       min-height: 100vh;
+
       color: var(--text);
-      background:
-        radial-gradient(circle at 15% 15%, rgba(52, 211, 153, 0.12), transparent 28%),
-        radial-gradient(circle at 85% 20%, rgba(96, 165, 250, 0.12), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(167, 139, 250, 0.1), transparent 35%),
-        var(--bg);
+
       font-family:
         Inter,
         "Noto Sans JP",
@@ -49,372 +51,612 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 10% 5%,
+          rgba(52, 211, 153, 0.13),
+          transparent 27%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(96, 165, 250, 0.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(167, 139, 250, 0.10),
+          transparent 35%
+        ),
+        var(--bg);
+
       overflow-x: hidden;
     }
 
-    /* ---------- Background ---------- */
+    /* ================================
+       BACKGROUND
+    ================================= */
 
     .grid {
       position: fixed;
       inset: 0;
-      z-index: -2;
+      z-index: -3;
+
       pointer-events: none;
-      opacity: 0.35;
+
+      opacity: 0.3;
+
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        linear-gradient(
+          rgba(255, 255, 255, 0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.025) 1px,
+          transparent 1px
+        );
+
       background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black 0%,
+          transparent 85%
+        );
     }
 
     .orb {
       position: fixed;
-      width: 320px;
-      height: 320px;
+
+      width: 350px;
+      height: 350px;
+
       border-radius: 50%;
-      filter: blur(100px);
-      opacity: .12;
+
+      filter: blur(110px);
+
+      opacity: 0.11;
+
       pointer-events: none;
-      z-index: -1;
+
+      z-index: -2;
     }
 
-    .orb.one {
+    .orb.green {
       background: var(--green);
-      top: -120px;
-      left: -100px;
+      top: -140px;
+      left: -120px;
     }
 
-    .orb.two {
+    .orb.purple {
       background: var(--purple);
-      right: -120px;
-      top: 35%;
+      right: -140px;
+      top: 40%;
     }
 
-    /* ---------- Header ---------- */
+    /* ================================
+       HEADER
+    ================================= */
 
     header {
       width: min(1180px, calc(100% - 40px));
+
       margin: 0 auto;
+
       padding: 28px 0;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
+
       font-weight: 900;
-      letter-spacing: -.03em;
+
+      letter-spacing: -0.04em;
     }
 
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--green), var(--blue));
-      color: #04110d;
-      font-size: 16px;
+
+      border-radius: 11px;
+
+      color: #03130d;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--green),
+          var(--blue)
+        );
+
+      box-shadow:
+        0 8px 25px rgba(52, 211, 153, 0.2);
     }
 
     .status {
       display: flex;
       align-items: center;
       gap: 8px;
+
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.08em;
     }
 
     .status-dot {
       width: 8px;
       height: 8px;
+
       border-radius: 50%;
+
       background: var(--green);
-      box-shadow: 0 0 14px var(--green);
+
+      box-shadow:
+        0 0 15px var(--green);
     }
 
-    /* ---------- Hero ---------- */
+    /* ================================
+       HERO
+    ================================= */
 
     .hero {
       width: min(1180px, calc(100% - 40px));
+
       margin: 0 auto;
-      padding: 105px 0 90px;
+
+      padding: 105px 0 95px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
+      gap: 9px;
+
+      padding: 8px 13px;
+
       border: 1px solid var(--border);
+
       border-radius: 999px;
-      background: rgba(255,255,255,.04);
+
+      background: rgba(255, 255, 255, 0.035);
+
       color: #cbd5e1;
-      font-size: 13px;
-      font-weight: 800;
-      backdrop-filter: blur(12px);
+
+      font-size: 12px;
+
+      font-weight: 900;
+
+      backdrop-filter: blur(15px);
     }
 
-    .eyebrow span {
+    .eyebrow-dot {
       color: var(--green);
     }
 
-    h1 {
-      max-width: 900px;
-      margin: 24px 0 20px;
-      font-size: clamp(3.2rem, 9vw, 7.5rem);
-      line-height: .92;
-      letter-spacing: -.075em;
+    .hero h1 {
+      max-width: 950px;
+
+      margin: 25px 0 22px;
+
+      font-size:
+        clamp(3.5rem, 9vw, 8rem);
+
+      line-height: 0.9;
+
+      letter-spacing: -0.08em;
+
       font-weight: 950;
     }
 
-    h1 .gradient {
-      background: linear-gradient(
-        100deg,
-        #fff 10%,
-        #a7f3d0 45%,
-        #93c5fd 75%,
-        #c4b5fd
-      );
+    .gradient-text {
+      background:
+        linear-gradient(
+          100deg,
+          #ffffff 10%,
+          #a7f3d0 40%,
+          #93c5fd 72%,
+          #c4b5fd
+        );
+
       -webkit-background-clip: text;
       background-clip: text;
+
       color: transparent;
     }
 
     .hero-description {
-      max-width: 650px;
+      max-width: 680px;
+
       color: var(--muted);
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      line-height: 1.8;
+
+      font-size:
+        clamp(1rem, 2vw, 1.18rem);
+
+      line-height: 1.85;
     }
 
     .hero-description strong {
       color: #e2e8f0;
     }
 
-    /* ---------- Works ---------- */
+    /* ================================
+       MAIN
+    ================================= */
 
     main {
       width: min(1180px, calc(100% - 40px));
+
       margin: 0 auto;
     }
 
     .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
       margin-bottom: 25px;
     }
 
     .section-heading h2 {
       margin: 0;
-      font-size: 1.7rem;
-      letter-spacing: -.04em;
+
+      font-size: 1.75rem;
+
+      letter-spacing: -0.05em;
     }
 
     .section-heading p {
-      margin: 0;
+      margin: 7px 0 0;
+
       color: var(--muted);
-      font-size: 14px;
+
+      font-size: 13px;
     }
 
-    .works {
+    /* ================================
+       PROJECT GRID
+    ================================= */
+
+    .projects {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+
+      grid-template-columns:
+        repeat(12, 1fr);
+
       gap: 18px;
     }
 
-    .work {
-      grid-column: span 7;
+    .project {
       position: relative;
-      min-height: 430px;
-      padding: 34px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+
+      grid-column: span 6;
+
+      min-height: 470px;
+
+      padding: 35px;
+
       overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.08),
+          rgba(255,255,255,0.025)
+        );
+
+      box-shadow:
+        0 15px 50px rgba(0,0,0,0.15);
+
       transition:
-        transform .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
     }
 
-    .work:hover {
-      transform: translateY(-7px);
-      border-color: rgba(52, 211, 153, .35);
-      box-shadow: 0 25px 80px rgba(0,0,0,.35);
+    .project:hover {
+      transform: translateY(-8px);
+
+      background: var(--card-hover);
+
+      border-color:
+        rgba(255,255,255,0.18);
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.35);
     }
 
-    .work.secondary {
-      grid-column: span 5;
-    }
-
-    .work::after {
+    .project::before {
       content: "";
+
       position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -100px;
-      bottom: -100px;
+
+      width: 260px;
+      height: 260px;
+
+      right: -120px;
+      bottom: -120px;
+
       border-radius: 50%;
+
       background: var(--green);
-      filter: blur(90px);
-      opacity: .12;
+
+      filter: blur(100px);
+
+      opacity: 0.12;
+
       pointer-events: none;
     }
 
-    .number {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: .12em;
+    .project.family::before {
+      background: var(--blue);
     }
 
-    .icon {
-      width: 64px;
-      height: 64px;
-      margin: 35px 0 25px;
-      border-radius: 19px;
+    .project-number {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: 0.14em;
+    }
+
+    .project-icon {
+      width: 68px;
+      height: 68px;
+
+      margin: 38px 0 25px;
+
       display: grid;
       place-items: center;
-      font-size: 30px;
-      background: rgba(52, 211, 153, .1);
-      border: 1px solid rgba(52, 211, 153, .2);
+
+      border-radius: 21px;
+
+      font-size: 31px;
+
+      background:
+        rgba(52, 211, 153, 0.1);
+
+      border:
+        1px solid rgba(52, 211, 153, 0.18);
     }
 
-    .work h3 {
-      margin: 0 0 10px;
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      letter-spacing: -.05em;
+    .family .project-icon {
+      background:
+        rgba(96, 165, 250, 0.1);
+
+      border-color:
+        rgba(96, 165, 250, 0.18);
     }
 
-    .work p {
+    .project h3 {
+      margin: 0 0 12px;
+
+      font-size:
+        clamp(1.7rem, 3vw, 2.4rem);
+
+      letter-spacing: -0.06em;
+    }
+
+    .project-description {
+      min-height: 105px;
+
       max-width: 600px;
-      margin: 0 0 28px;
+
+      margin: 0 0 27px;
+
       color: var(--muted);
-      line-height: 1.75;
+
+      line-height: 1.8;
     }
 
     .tags {
       display: flex;
+
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 28px;
+
+      gap: 7px;
+
+      margin-bottom: 30px;
     }
 
     .tag {
       padding: 7px 10px;
+
+      border:
+        1px solid var(--border);
+
       border-radius: 999px;
-      background: rgba(255,255,255,.055);
-      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.04);
+
       color: #cbd5e1;
-      font-size: 12px;
+
+      font-size: 11px;
+
       font-weight: 800;
     }
 
-    .open {
+    /* ================================
+       BUTTON
+    ================================= */
+
+    .open-button {
+      position: relative;
+
+      z-index: 2;
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 10px;
-      padding: 13px 17px;
-      border-radius: 13px;
-      color: #03130d;
-      background: #a7f3d0;
+
+      padding: 14px 18px;
+
+      border-radius: 14px;
+
+      background:
+        var(--green-light);
+
+      color:
+        #03130d;
+
       text-decoration: none;
-      font-weight: 900;
-      transition: transform .2s ease, background .2s ease;
+
+      font-size: 14px;
+
+      font-weight: 950;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
-    .open:hover {
-      transform: translateX(3px);
-      background: #d1fae5;
+    .family .open-button {
+      background:
+        var(--blue-light);
+
+      color:
+        #071426;
+    }
+
+    .open-button:hover {
+      transform: translateX(4px);
+
+      background: white;
+
+      box-shadow:
+        0 15px 35px rgba(255,255,255,0.08);
     }
 
     .arrow {
       font-size: 18px;
+
+      line-height: 1;
     }
 
-    /* ---------- About ---------- */
+    /* ================================
+       ABOUT
+    ================================= */
 
     .about {
       margin: 100px 0;
-      padding: 32px;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      background: rgba(255,255,255,.035);
+
+      padding: 35px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 28px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      backdrop-filter:
+        blur(15px);
     }
 
     .about-label {
       color: var(--green);
-      font-size: 12px;
+
+      font-size: 11px;
+
       font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+
+      letter-spacing: 0.14em;
     }
 
     .about h2 {
-      margin: 12px 0;
-      font-size: 2rem;
-      letter-spacing: -.05em;
+      margin: 13px 0;
+
+      font-size:
+        clamp(1.7rem, 4vw, 2.5rem);
+
+      letter-spacing: -0.06em;
     }
 
     .about p {
-      max-width: 750px;
-      color: var(--muted);
-      line-height: 1.8;
+      max-width: 760px;
+
       margin: 0;
+
+      color: var(--muted);
+
+      line-height: 1.85;
     }
 
-    /* ---------- Footer ---------- */
+    /* ================================
+       FOOTER
+    ================================= */
 
     footer {
       width: min(1180px, calc(100% - 40px));
+
       margin: 0 auto;
+
       padding: 30px 0 45px;
-      border-top: 1px solid var(--border);
+
+      border-top:
+        1px solid var(--border);
+
       display: flex;
+
       justify-content: space-between;
+
       gap: 20px;
+
       color: var(--muted);
-      font-size: 13px;
+
+      font-size: 12px;
     }
 
-    /* ---------- Responsive ---------- */
+    /* ================================
+       MOBILE
+    ================================= */
 
     @media (max-width: 760px) {
+
       header {
         padding-top: 20px;
       }
 
       .hero {
-        padding: 75px 0 65px;
+        padding:
+          75px 0
+          65px;
       }
 
-      .works {
+      .projects {
         display: block;
       }
 
-      .work {
-        margin-bottom: 18px;
+      .project {
         min-height: auto;
+
+        margin-bottom: 18px;
       }
 
-      .work.secondary {
-        min-height: 330px;
-      }
-
-      .section-heading {
-        display: block;
-      }
-
-      .section-heading p {
-        margin-top: 6px;
+      .project-description {
+        min-height: auto;
       }
 
       footer {
@@ -431,114 +673,261 @@
 <body>
 
   <div class="grid"></div>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
+
+  <div class="orb green"></div>
+
+  <div class="orb purple"></div>
+
+
+  <!-- ================================
+       HEADER
+  ================================= -->
 
   <header>
-    <div class="logo">
-      <div class="logo-mark">S</div>
-      <span>FRONTEND WORKS</span>
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        S
+      </div>
+
+      <span>
+        FRONTEND WORKS
+      </span>
+
     </div>
 
+
     <div class="status">
+
       <span class="status-dot"></span>
-      <span>ONLINE</span>
+
+      <span>
+        ONLINE
+      </span>
+
     </div>
+
   </header>
+
+
+  <!-- ================================
+       HERO
+  ================================= -->
 
   <section class="hero">
 
     <div class="eyebrow">
-      <span>●</span>
-      Selected Frontend Projects
+
+      <span class="eyebrow-dot">
+        ●
+      </span>
+
+      SELECTED FRONTEND PROJECTS
+
     </div>
 
+
     <h1>
+
       Ideas into<br>
-      <span class="gradient">interfaces.</span>
+
+      <span class="gradient-text">
+        interfaces.
+      </span>
+
     </h1>
 
+
     <p class="hero-description">
+
       Web interfaces, experiments, and small applications
-      created through <strong>design, code, and a little bit of madness.</strong>
+      created through
+      <strong>
+        design, code, and a little bit of madness.
+      </strong>
+
     </p>
 
   </section>
 
+
+  <!-- ================================
+       PROJECTS
+  ================================= -->
+
   <main>
 
     <div class="section-heading">
-      <div>
-        <h2>Selected Works</h2>
-        <p>制作したフロントエンド作品</p>
-      </div>
+
+      <h2>
+        Selected Works
+      </h2>
+
+      <p>
+        制作したフロントエンド作品
+      </p>
+
     </div>
 
-    <section class="works">
 
-      <!-- ============================= -->
-      <!-- 01 : かぞくボイス -->
-      <!-- ============================= -->
+    <section class="projects">
 
-      <article class="work">
 
-        <div class="number">01 / WEB APPLICATION</div>
+      <!-- ==================================
+           01 / SENIOR SIDE
+      =================================== -->
 
-        <div class="icon">🎙️</div>
+      <article class="project">
 
-        <h3>かぞくボイス</h3>
-
-        <p>
-          声でつながる、家族のためのコミュニケーションUI。
-          スマートフォンの操作に慣れていない人でも
-          迷いにくいインターフェースを目指した作品。
-        </p>
-
-        <div class="tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">UI / UX</span>
+        <div class="project-number">
+          01 / SENIOR SIDE
         </div>
 
-        <!-- ★ seniorフォルダの1_senior_auth.htmlへ -->
+
+        <div class="project-icon">
+          🎙️
+        </div>
+
+
+        <h3>
+          かぞくボイス
+        </h3>
+
+
+        <p class="project-description">
+
+          「声でつながる、家族のばしょ」をコンセプトにした
+          高齢者向けコミュニケーションUI。
+
+          文字入力をできるだけ減らし、
+          大きく・分かりやすく・迷いにくい
+          インターフェースを目指した作品です。
+
+        </p>
+
+
+        <div class="tags">
+
+          <span class="tag">
+            HTML
+          </span>
+
+          <span class="tag">
+            CSS
+          </span>
+
+          <span class="tag">
+            JavaScript
+          </span>
+
+          <span class="tag">
+            UI / UX
+          </span>
+
+        </div>
+
+
+        <!--
+          ★ 同じ階層にあるので senior/ は付けない
+          index.html
+          └── 1_senior_auth.html
+        -->
+
         <a
-          class="open"
-          href="./senior/1_senior_auth.html"
+          class="open-button"
+          href="./1_senior_auth.html"
         >
-          作品を開く
-          <span class="arrow">→</span>
+
+          高齢者側を開く
+
+          <span class="arrow">
+            →
+          </span>
+
         </a>
 
       </article>
 
 
-      <!-- ============================= -->
-      <!-- 02 : Coming Soon -->
-      <!-- ============================= -->
 
-      <article class="work secondary">
+      <!-- ==================================
+           02 / FAMILY SIDE
+      =================================== -->
 
-        <div class="number">02 / NEXT PROJECT</div>
+      <article class="project family">
 
-        <div class="icon">✦</div>
+        <div class="project-number">
+          02 / FAMILY SIDE
+        </div>
 
-        <h3>More Experiments</h3>
 
-        <p>
-          ここには次に制作したフロントエンド作品が
-          追加されていく予定。
+        <div class="project-icon">
+          👨‍👩‍👧‍👦
+        </div>
+
+
+        <h3>
+          家族側
+        </h3>
+
+
+        <p class="project-description">
+
+          「かぞくボイス」を家族側から利用するための
+          認証・コミュニケーションUI。
+
+          高齢者側とは異なる利用者を想定して
+          設計しています。
+
         </p>
 
+
         <div class="tags">
-          <span class="tag">EXPERIMENT</span>
-          <span class="tag">COMING SOON</span>
+
+          <span class="tag">
+            HTML
+          </span>
+
+          <span class="tag">
+            CSS
+          </span>
+
+          <span class="tag">
+            UI / UX
+          </span>
+
         </div>
+
+
+        <!--
+          ★ 同じ階層にあるので family/ も付けない
+          index.html
+          └── 2_family_auth.html
+        -->
+
+        <a
+          class="open-button"
+          href="./2_family_auth.html"
+        >
+
+          家族側を開く
+
+          <span class="arrow">
+            →
+          </span>
+
+        </a>
 
       </article>
 
+
     </section>
 
+
+    <!-- ================================
+         ABOUT
+    ================================= -->
 
     <section class="about">
 
@@ -546,12 +935,21 @@
         ABOUT THIS COLLECTION
       </div>
 
-      <h2>コードを書く。試す。壊す。そして作る。</h2>
+
+      <h2>
+        コードを書く。試す。壊す。そして作る。
+      </h2>
+
 
       <p>
+
         このページは、制作したフロントエンド作品をまとめるための
-        ポータルページです。完成されたサービスだけではなく、
-        UIの実験やアイデアを形にしたプロトタイプもここに残していきます。
+        ポータルページです。
+
+        完成されたサービスだけではなく、
+        UIの実験やアイデアを形にしたプロトタイプも
+        ここに残していきます。
+
       </p>
 
     </section>
@@ -559,18 +957,23 @@
   </main>
 
 
+  <!-- ================================
+       FOOTER
+  ================================= -->
+
   <footer>
 
     <div>
       © 2026 Sugar310
     </div>
 
+
     <div>
-      Frontend Works / Built with HTML & CSS
+      FRONTEND WORKS / BUILT WITH HTML & CSS
     </div>
 
   </footer>
 
 </body>
 </html>
-```
+
