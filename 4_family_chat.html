@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>かぞくボイス for Family - チャット</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-slate-800 min-h-screen flex items-center justify-center p-2 sm:p-4">
+
+  <div class="w-full max-w-md h-[840px] bg-slate-100 rounded-[40px] border-[8px] border-slate-900 shadow-2xl overflow-hidden flex flex-col justify-between">
+    
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
+      <div class="flex items-center gap-3">
+        <a href="2_family_auth.html" class="text-slate-400 hover:text-slate-600 pr-1">
+          <i class="fa-solid fa-chevron-left text-lg"></i>
+        </a>
+        <img src="https://images.unsplash.com/photo-1581579438747-1dc8d1e0736f?w=120&auto=format&fit=crop&q=80" class="w-10 h-10 rounded-full object-cover border border-slate-200">
+        <div>
+          <h2 class="text-base font-bold text-slate-800">おとうさん</h2>
+          <p class="text-xs text-slate-500">最終既読: 10:25</p>
+        </div>
+      </div>
+      <div class="flex gap-1">
+        <button class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"><i class="fa-solid fa-video text-lg"></i></button>
+        <button class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"><i class="fa-solid fa-gear text-lg"></i></button>
+      </div>
+    </header>
+
+    <!-- タイムライン -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-4 text-sm">
+      <div class="text-center">
+        <span class="bg-slate-200 text-slate-600 text-xs px-2.5 py-0.5 rounded-full">8月17日(月)</span>
+      </div>
+
+      <!-- 送信：娘 -->
+      <div class="flex items-start justify-end gap-2">
+        <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[75%] shadow-sm">
+          お父さん、おはよう！今朝のお薬は飲んだかな？夕方顔を出すね！
+        </div>
+      </div>
+
+      <!-- 受信：父（ボイス＋AI文字起こし） -->
+      <div class="flex items-start gap-2">
+        <img src="https://images.unsplash.com/photo-1581579438747-1dc8d1e0736f?w=120&auto=format&fit=crop&q=80" class="w-8 h-8 rounded-full object-cover mt-1">
+        <div class="bg-white border border-slate-200 p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] space-y-2">
+          
+          <!-- 音声プレイヤー -->
+          <div class="flex items-center gap-2.5">
+            <button class="w-9 h-9 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center hover:bg-indigo-200 transition-colors">
+              <i class="fa-solid fa-play text-xs ml-0.5"></i>
+            </button>
+            <div class="flex-1">
+              <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 w-1/3"></div>
+              </div>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">0:12</span>
+          </div>
+
+          <!-- AI自動文字起こし表示 -->
+          <div class="bg-indigo-50/70 border border-indigo-100 p-2.5 rounded-xl text-xs text-indigo-950 space-y-0.5">
+            <div class="flex items-center gap-1 text-[10px] font-bold text-indigo-500">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>AI自動文字起こし</span>
+            </div>
+            <p class="font-medium">「薬は飲んだよ。気をつけておいで」</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 送信：娘 (スタンプ) -->
+      <div class="flex items-start justify-end gap-2">
+        <div class="bg-amber-100 border border-amber-200 text-amber-900 px-3 py-2 rounded-2xl rounded-tr-none flex items-center gap-1 font-bold">
+          <span>👍 りょうかい！</span>
+        </div>
+      </div>
+
+      <!-- 受信：父 (写真) -->
+      <div class="flex items-start gap-2">
+        <img src="https://images.unsplash.com/photo-1581579438747-1dc8d1e0736f?w=120&auto=format&fit=crop&q=80" class="w-8 h-8 rounded-full object-cover mt-1">
+        <div class="bg-white border border-slate-200 p-2 rounded-2xl rounded-tl-none shadow-sm max-w-[70%]">
+          <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?w=400&auto=format&fit=crop&q=80" class="rounded-xl w-full h-32 object-cover">
+          <p class="text-xs text-slate-600 font-medium pt-1 px-1">朝のお散歩のしゃしん</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 家族向けメッセージ入力エリア -->
+    <div class="bg-white border-t border-slate-200 p-3 flex items-center gap-2">
+      <button class="text-slate-400 hover:text-slate-600 p-2"><i class="fa-solid fa-plus text-lg"></i></button>
+      <button class="text-slate-400 hover:text-slate-600 p-2"><i class="fa-solid fa-image text-lg"></i></button>
+      <input type="text" placeholder="メッセージを入力..." class="flex-1 bg-slate-100 border border-slate-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
+      <button class="w-9 h-9 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-700 transition-colors">
+        <i class="fa-solid fa-paper-plane text-xs"></i>
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>
